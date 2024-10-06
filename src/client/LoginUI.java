@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import ip.*;
+
 public class LoginUI extends Application {
     private TextField usernameField;
 
@@ -39,7 +41,7 @@ public class LoginUI extends Application {
         String username = usernameField.getText();
         if (!username.isEmpty()) {
             try {
-                Socket socket = new Socket("localhost", 12345);
+                Socket socket = new Socket(IP_ADDRESS.IP, 12345);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
