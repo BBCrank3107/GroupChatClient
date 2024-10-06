@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import ip.IP_ADDRESS;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -53,7 +54,7 @@ public class MessageUI extends Application {
 
     private void loadUserList() {
         try {
-            Socket socket = new Socket("localhost", 12345);
+            Socket socket = new Socket(IP_ADDRESS.IP, 12345);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -90,7 +91,7 @@ public class MessageUI extends Application {
     private void openGroupChatbox(Stage primaryStage) {
         try {
             // Tạo kết nối đến server để gửi yêu cầu tham gia nhóm
-            Socket socket = new Socket("localhost", 12345);
+            Socket socket = new Socket(IP_ADDRESS.IP, 12345);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             
             // Gửi yêu cầu tham gia nhóm
