@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import ip.IP_ADDRESS;
+
 public class ChatboxUI extends Application {
     private String username;  // Tên người dùng hiện tại
     private String chatWith;  // Tên người dùng mà bạn muốn chat
@@ -56,7 +58,7 @@ public class ChatboxUI extends Application {
     // Kết nối đến server
     private void connectToServer() {
         try {
-            Socket socket = new Socket("localhost", 12345);
+            Socket socket = new Socket(IP_ADDRESS.IP, 12345);
             out = new PrintWriter(socket.getOutputStream(), true);
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +69,7 @@ public class ChatboxUI extends Application {
     private void loadMessages() {
         new Thread(() -> {
             try {
-                Socket socket = new Socket("localhost", 12345);
+                Socket socket = new Socket(IP_ADDRESS.IP, 12345);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
