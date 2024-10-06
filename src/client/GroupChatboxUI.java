@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import ip.IP_ADDRESS;
+
 public class GroupChatboxUI extends Application {
     private String username;
     private TextArea chatArea;
@@ -51,7 +53,7 @@ public class GroupChatboxUI extends Application {
 
         try {
             // Initialize the socket and I/O streams here
-            socket = new Socket("localhost", 12345);
+            socket = new Socket(IP_ADDRESS.IP, 12345);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -76,7 +78,7 @@ public class GroupChatboxUI extends Application {
     private void startListeningForMessages() {
         new Thread(() -> {
             try {
-                socket = new Socket("localhost", 12345);
+                socket = new Socket(IP_ADDRESS.IP, 12345);
                 out = new PrintWriter(socket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
